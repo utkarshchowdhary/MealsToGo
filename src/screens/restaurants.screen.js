@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
-import { Searchbar } from 'react-native-paper';
 
 import { SafeArea } from '../components/utility/safe-area.component';
+import { Search } from '../components/search.component';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 import { RestaurantsContext } from '../services/restaurants/restaurants.context';
 
 import {
   LoadingContainer,
   Loading,
-  SearchContainer,
   RestaurantList,
 } from './restaurants.styles';
 
@@ -22,14 +21,14 @@ export const RestaurantsScreen = () => {
           <Loading size={50} animating={true} color={'#ff8a5b'} />
         </LoadingContainer>
       )}
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
-      <RestaurantList
-        data={restaurants}
-        renderItem={({ item }) => <RestaurantInfoCard restaurant={item} />}
-        keyExtractor={(item) => item.name}
-      />
+      <Search />
+      {!isLoading && (
+        <RestaurantList
+          data={restaurants}
+          renderItem={({ item }) => <RestaurantInfoCard restaurant={item} />}
+          keyExtractor={(item) => item.name}
+        />
+      )}
     </SafeArea>
   );
 };
