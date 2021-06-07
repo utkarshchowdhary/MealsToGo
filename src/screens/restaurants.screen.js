@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { TouchableOpacity } from 'react-native';
 
 import { SafeArea } from '../components/utility/safe-area.component';
 import { Search } from '../components/search.component';
@@ -11,22 +12,32 @@ import {
   RestaurantList,
 } from './restaurants.styles';
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
 
   return (
     <SafeArea>
       {isLoading && (
         <LoadingContainer>
-          <Loading size={50} animating={true} color={'#ff8a5b'} />
+          <Loading size={50} animating={true} color="#ff8a5b" />
         </LoadingContainer>
       )}
       <Search />
       {!isLoading && (
         <RestaurantList
           data={restaurants}
-          renderItem={({ item }) => <RestaurantInfoCard restaurant={item} />}
-          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('RestaurantDetail', {
+                  restaurant: item,
+                })
+              }
+            >
+              <RestaurantInfoCard restaurant={item} />
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.placeId}
         />
       )}
     </SafeArea>
