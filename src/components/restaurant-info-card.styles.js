@@ -7,7 +7,6 @@ export const RestaurantCard = styled(Card)`
 `;
 
 export const RestaurantCover = styled(Card.Cover)`
-  padding: ${({ theme }) => theme.space[3]};
   background-color: ${({ theme }) => theme.colors.bg.primary};
 `;
 

@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import WebView from 'react-native-webview';
 import { Platform } from 'react-native';
 
+import { Favourite } from './favourite.component';
 import { Text } from './typography/text.component';
 
 const Item = styled.View`
@@ -30,6 +31,7 @@ export const CompactRestaurantInfo = ({ restaurant, isMap }) => {
 
   return (
     <Item>
+      <Favourite restaurant={restaurant} />
       <Image source={{ uri: restaurant.photos[0] }} />
       <Text variant="caption">{restaurant.name}</Text>
     </Item>

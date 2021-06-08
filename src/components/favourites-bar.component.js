@@ -6,7 +6,7 @@ import { CompactRestaurantInfo } from './compact-restaurant-info.component';
 import { Text } from './typography/text.component';
 
 const FavouritesWrapper = styled.View`
-  padding: 10px;
+  padding: 0 ${({ theme }) => theme.space[3]};
 `;
 
 const FavouriteWrapper = styled.View`
@@ -15,7 +15,8 @@ const FavouriteWrapper = styled.View`
 
 export const FavouritesBar = ({ favourites, onNavigate }) => (
   <FavouritesWrapper>
-    <Text variant="caption">Favourites</Text>
+    <Text variant="caption">Favourites Bar</Text>
+    {!favourites.length && <Text>It's empty in here</Text>}
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {favourites.map((restaurant) => {
         return (
