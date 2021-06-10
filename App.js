@@ -5,12 +5,27 @@ import {
   Oswald_400Regular,
 } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
+import * as firebase from 'firebase';
 
 import { Navigation } from './infrastructure/navigation';
 import { theme } from './infrastructure/theme';
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
 import { LocationContextProvider } from './src/services/location/location.context';
 import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
+import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyBNj9hv_QU3EREfwl37Dfzbawj8jpiWQrw',
+  authDomain: 'mealstogo-85def.firebaseapp.com',
+  projectId: 'mealstogo-85def',
+  storageBucket: 'mealstogo-85def.appspot.com',
+  messagingSenderId: '410443333760',
+  appId: '1:410443333760:web:c0a5c3f8adbfaa8399a665',
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -27,13 +42,15 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <FavouritesContextProvider>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation />
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
-      </FavouritesContextProvider>
+      <AuthenticationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
+      </AuthenticationContextProvider>
     </ThemeProvider>
   );
 }
