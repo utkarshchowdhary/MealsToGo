@@ -7,12 +7,9 @@ import { FavouritesBar } from '../components/favourites-bar.component';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 import { RestaurantsContext } from '../services/restaurants/restaurants.context';
 import { FavouritesContext } from '../services/favourites/favourites.context';
+import { RestaurantsList } from '../components/restaurants-list.styles';
 
-import {
-  LoadingContainer,
-  Loading,
-  RestaurantList,
-} from './restaurants.styles';
+import { LoadingContainer, Loading } from './restaurants.styles';
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
@@ -37,7 +34,7 @@ export const RestaurantsScreen = ({ navigation }) => {
         />
       )}
       {!isLoading && (
-        <RestaurantList
+        <RestaurantsList
           data={restaurants}
           renderItem={({ item }) => (
             <TouchableOpacity

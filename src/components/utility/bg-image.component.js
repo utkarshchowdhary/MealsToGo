@@ -18,5 +18,5 @@ export const BgImageCover = styled.View`
 export const BgImageContentContainer = styled.View`
   width: 90%;
   background-color: rgba(255, 255, 255, 0.7);
-  padding: ${(props) => props.theme.space[4]};
+  padding: ${({ theme }) => theme.space[4]};
 `;

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/native';
 import { ActivityIndicator } from 'react-native-paper';
+import LottieView from 'lottie-react-native';
 
 import { AuthenticationContext } from '../services/authentication/authentication.context';
 import {
@@ -15,12 +16,29 @@ const TitleContainer = styled.View`
   margin-bottom: ${({ theme }) => theme.space[2]};
 `;
 
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${({ theme }) => theme.space[2]};
+`;
+
 export const AccountScreen = ({ navigation }) => {
   const { isLoading } = useContext(AuthenticationContext);
 
   return (
     <BgImage>
       <BgImageCover />
+      <AnimationWrapper>
+        <LottieView
+          key="animation"
+          autoPlay
+          loop
+          resizeMode="cover"
+          source={require('../../assets/watermelon.json')}
+        />
+      </AnimationWrapper>
       <TitleContainer>
         <Text variant="title">Meals To Go</Text>
       </TitleContainer>
@@ -42,7 +60,7 @@ export const AccountScreen = ({ navigation }) => {
           </Btn>
         </BgImageContentContainer>
       ) : (
-        <ActivityIndicator animating={true} color="#ff8a5b" />
+        <ActivityIndicator size={36} animating={true} color="#ff8a5b" />
       )}
     </BgImage>
   );

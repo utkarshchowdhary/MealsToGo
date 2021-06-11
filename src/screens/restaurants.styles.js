@@ -1,12 +1,6 @@
 import styled from 'styled-components/native';
 import { ActivityIndicator } from 'react-native-paper';
 
-export const RestaurantList = styled.FlatList.attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
-
 export const LoadingContainer = styled.View`
   position: absolute;
   top: 50%;
