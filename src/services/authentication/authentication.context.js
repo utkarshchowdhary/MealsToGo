@@ -1,6 +1,11 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
-import { loginRequest, registerRequest } from './authentication.service';
+import {
+  loginRequest,
+  registerRequest,
+  logoutRequest,
+  sessionRequest,
+} from './authentication.service';
 
 export const AuthenticationContext = createContext();
 
@@ -9,12 +14,26 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    setIsLoading(true);
+    sessionRequest()
+      .then((usr) => {
+        setIsLoading(false);
+        setUser(usr);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  }, []);
+
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(email, password)
-      .then((u) => {
-        setUser(u);
+      .then((usr) => {
         setIsLoading(false);
+        setError(null);
+        setUser(usr.user);
       })
       .catch((e) => {
         setIsLoading(false);
@@ -30,9 +49,23 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     setIsLoading(true);
     registerRequest(email, password)
-      .then((u) => {
-        setUser(u);
+      .then((usr) => {
         setIsLoading(false);
+        setError(null);
+        setUser(usr.user);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
+
+  const onLogout = () => {
+    setIsLoading(true);
+    logoutRequest()
+      .then(() => {
+        setIsLoading(false);
+        setUser(null);
       })
       .catch((e) => {
         setIsLoading(false);
@@ -46,6 +79,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         isAuthenticated: !!user,
         onLogin,
         onRegister,
+        onLogout,
         isLoading,
         user,
         error,
