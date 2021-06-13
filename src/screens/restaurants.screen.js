@@ -18,11 +18,6 @@ export const RestaurantsScreen = ({ navigation }) => {
 
   return (
     <SafeArea>
-      {isLoading && (
-        <LoadingContainer>
-          <Loading size={50} animating={true} color="#ff8a5b" />
-        </LoadingContainer>
-      )}
       <Search
         isFavouritesToggled={isToggled}
         onFavouritesToggle={() => setIsToggled(!isToggled)}
@@ -33,7 +28,11 @@ export const RestaurantsScreen = ({ navigation }) => {
           onNavigate={navigation.navigate}
         />
       )}
-      {!isLoading && (
+      {isLoading ? (
+        <LoadingContainer>
+          <Loading size={50} animating={true} color="#ff8a5b" />
+        </LoadingContainer>
+      ) : (
         <RestaurantsList
           data={restaurants}
           renderItem={({ item }) => (

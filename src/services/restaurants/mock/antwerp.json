@@ -28,7 +28,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }
@@ -61,7 +61,7 @@
       "photos": [
         {
           "height": 1536,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 2048
         }
@@ -71,6 +71,7 @@
         "compound_code": "",
         "global_code": ""
       },
+      "rating": 4,
       "reference": "",
       "scope": "",
       "types": [
@@ -161,7 +162,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }
@@ -198,7 +199,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }
@@ -236,7 +237,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }
@@ -274,7 +275,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }
@@ -311,7 +312,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }
@@ -349,7 +350,7 @@
       "photos": [
         {
           "height": 0,
-          "html_attributions": [],
+          "html_attributions": [""],
           "photo_reference": "",
           "width": 0
         }

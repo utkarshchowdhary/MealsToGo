@@ -11,12 +11,12 @@ export const restaurantsRequest = (location) => {
   });
 };
 
-export const restaurantsTransform = ({ results = [] }) => {
-  const mappedResults = results.map((restaurant) => ({
+export const restaurantsTransform = ({ results }) => {
+  const formattedResults = camelize(results);
+
+  return formattedResults.map((restaurant) => ({
     ...restaurant,
-    isOpenNow: !!restaurant?.opening_hours?.open_now,
+    isOpenNow: !!restaurant.openingHours && restaurant.openingHours.openNow,
     photos: [mockImages[Math.floor(Math.random() * mockImages.length)]],
   }));
-
-  return camelize(mappedResults);
 };
