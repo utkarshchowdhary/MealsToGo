@@ -25,7 +25,13 @@ export const AnimationWrapper = styled.View`
 `;
 
 export const AccountScreen = ({ navigation }) => {
+  
+  
   const { isLoading } = useContext(AuthenticationContext);
+  
+  useEffect(()=>{
+    navigation=true;
+  },[isLoading])
 
   return (
     <BgImage>
